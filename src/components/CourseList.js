@@ -10,7 +10,7 @@ const CourseList = (props) => {
   const domain = domainId ? props.domains.find(domain => domain.id === domainId) : null;
 
   return(
-    <div className='courseList container'>
+    <div className='courseList container-fluid'>
         {domainId && !subdomainId ?
           <DomainList domain={domain} ids={domain.subdomainIds} /> :
           domainId && subdomainId ?

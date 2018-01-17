@@ -22,7 +22,7 @@ class SubdomainList extends React.Component{
     return(
       <div>
         <h1>{subdomain.name}</h1>
-        <ProductListing id={subdomain.id}/>
+        <ProductListing id={subdomain.id} limit={10}/>
       </div>
     );
   }

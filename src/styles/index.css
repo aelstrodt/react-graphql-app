@@ -14,6 +14,56 @@
 
 .courseList {
   margin-left: 15em;
+  max-width: 55em;
+}
+
+.productImg > img{
+  max-width: 7em;
+  max-height: 7em;
+  float: left;
+}
+
+.subdomainSection{
+  text-align: center;
+}
+
+.subdomainHeading{
+  text-align: left;
+}
+
+.productItem{
+  text-align: left;
+}
+
+.toSubdomainBtn{
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+  min-width: 6em;
+  line-height: 2em;
+  font-size: 1.2em;
+}
+
+.productInfo{
+  display: inline-block;
+  margin: auto 0 auto 2em;
+  min-height: 7em;
+}
+
+.sidebarItem{
+  line-height: 1.6em;
+}
+
+.specializationSize{
+  display: inline-block;
+  background-color: #969696;
+  padding: 0.2em 0.5em;
+  margin-right: 1em;
+  color: white;
+}
+
+.partnerName{
+  display: inline-block;
+  color: #b3b3b3;
 }
 
 body {

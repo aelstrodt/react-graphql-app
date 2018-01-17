@@ -3,8 +3,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import CourseItem from './CourseItem';
-import SpecializationItem from './SpecializationItem';
+import ProductItems from './ProductItems';
 
 class ProductListing extends React.Component{
   constructor(props){
@@ -20,24 +19,22 @@ class ProductListing extends React.Component{
 
     const productIds = this.props.listingQuery.CatalogResultsV1Resource.bySubdomain.elements[0].entries;
 
+    const courses = productIds.filter(product => product.courseId);
+    const courseIds = courses.map(course => course.courseId);
+
+    const specializations = productIds.filter(product => product.onDemandSpecializationId);
+    const specializationIds = specializations.map(specialization => specialization.onDemandSpecializationId);
+
     return(
-      <div className="list-group">
-        {productIds.map(ids => {
-          return(
-            ids.courseId ?
-            <CourseItem key={ids.courseId} id={ids.courseId}/> :
-            <SpecializationItem key={ids.onDemandSpecializationId} id={ids.onDemandSpecializationId}/>
-          );
-        })}
-      </div>
+      <ProductItems courseIds={courseIds} specializationIds={specializationIds}/>
     );
   }
 }
 
 const LISTING_QUERY = gql`
-  query ListingQuery($id: String!) {
+  query ListingQuery($id: String!, $limit: Int!) {
     CatalogResultsV1Resource{
-      bySubdomain(subdomainId: $id, limit: 5){
+      bySubdomain(subdomainId: $id, limit: $limit){
         elements{
           entries{
             courseId
@@ -50,4 +47,4 @@ const LISTING_QUERY = gql`
 
 export default graphql(LISTING_QUERY, {
   name: 'listingQuery',
-  options: ({ id }) => ({ variables: { id } })})(ProductListing);
+  options: ({ id, limit }) => ({ variables: { id, limit } })})(ProductListing);

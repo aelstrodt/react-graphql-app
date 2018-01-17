@@ -8,15 +8,17 @@ import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { BatchHttpLink } from "apollo-link-batch-http";
 
 const httpLink = new HttpLink({ uri: 'https://www.coursera.org/graphql' });
 
 const client = new ApolloClient({
   link: httpLink,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  shouldBatch: false
 });
 
-ReactDOM.render( 
+ReactDOM.render(
   <ApolloProvider client={client}>
     <App />
   </ApolloProvider>,

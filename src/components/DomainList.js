@@ -24,13 +24,13 @@ class DomainList extends React.Component{
 
     return(
       <div>
-        <h1 className='domain-heading'>{this.props.domain.name}</h1>
+        <h1 className='domainHeading'>{this.props.domain.name}</h1>
         {subdomains.map(({ name, id }) => {
           return(
-            <div key={id} className='subdomain-section'>
-              <h2 className='subdomain-heading'>{name}</h2>
-              <ProductListing id={id}/>
-              <Link className='to-subdomain-btn btn btn-primary' to={path + id}>
+            <div key={id} className='subdomainSection'>
+              <h2 className='subdomainHeading'>{name}</h2>
+              <ProductListing id={id} limit={5}/>
+              <Link className='toSubdomainBtn btn btn-primary' to={path + id}>
                 See All
               </Link>
             </div>
