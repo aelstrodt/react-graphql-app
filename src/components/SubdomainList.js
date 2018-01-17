@@ -3,6 +3,8 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
+import ProductListing from './ProductListing';
+
 class SubdomainList extends React.Component{
   constructor(props){
     super(props);
@@ -18,7 +20,10 @@ class SubdomainList extends React.Component{
     const subdomain = this.props.subdomainQuery.SubdomainsV1Resource.get;
 
     return(
-      <h1>{subdomain.name}</h1>
+      <div>
+        <h1>{subdomain.name}</h1>
+        <ProductListing id={subdomain.id}/>
+      </div>
     );
   }
 }

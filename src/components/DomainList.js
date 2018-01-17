@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
+import ProductListing from './ProductListing';
+
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -27,6 +29,7 @@ class DomainList extends React.Component{
           return(
             <div key={id} className='subdomain-section'>
               <h2 className='subdomain-heading'>{name}</h2>
+              <ProductListing id={id}/>
               <Link className='to-subdomain-btn btn btn-primary' to={path + id}>
                 See All
               </Link>
