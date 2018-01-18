@@ -14,15 +14,15 @@ const SubdomainList = (props) => {
     return <div>Error</div>;
   };
 
-  const subdomainInfo = props.subdomainQuery.SubdomainsV1Resource.get;
-  const subdomain = {
-    name: subdomainInfo.name,
-    path: '/browse/' + subdomainInfo.id
-  };
-
   const domain = {
     name: props.domain.name,
     path: "/browse/" + props.domain.id
+  };
+
+  const subdomainInfo = props.subdomainQuery.SubdomainsV1Resource.get;
+  const subdomain = {
+    name: subdomainInfo.name,
+    path: domain.path + '/' + subdomainInfo.id
   };
 
   const imgStyles = {
@@ -38,7 +38,7 @@ const SubdomainList = (props) => {
       </div>
       <div className='listingSection'>
         <div className='subdomainSection'>
-          <ProductListing id={subdomainInfo.id} limit={10}/>
+          <ProductListing paginationPath={subdomain.path} query={props.query} id={subdomainInfo.id} limit={25}/>
         </div>
       </div>
     </div>

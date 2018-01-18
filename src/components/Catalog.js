@@ -24,7 +24,7 @@ class Catalog extends React.Component{
     return (
       <div className='app container-fluid'>
         <Sidebar domains={domains}/>
-        <CourseList domains={domains} filter={this.props.match.params}/>
+        <CourseList domains={domains} filter={this.props}/>
       </div>
     );
   }

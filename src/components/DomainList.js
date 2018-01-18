@@ -40,10 +40,7 @@ const DomainList = (props) => {
           return(
             <div key={id} className='subdomainSection'>
               <h2 className='subdomainHeading'>{name}</h2>
-              <ProductListing id={id} limit={5}/>
-              <Link className='toSubdomainBtn btn btn-primary' to={path + id}>
-                See All
-              </Link>
+              <ProductListing path={path + id} query={props.query} id={id} limit={5}/>
             </div>
           );
         })}

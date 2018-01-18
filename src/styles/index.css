@@ -45,6 +45,10 @@
   background-color: #ebebeb;
 }
 
+.pagination {
+  margin-bottom: 0;
+}
+
 .header{
   width: 100%;
   min-height: 8em;
@@ -60,6 +64,10 @@
   max-width: 7em;
   max-height: 7em;
   float: left;
+}
+
+nav {
+  padding: 1em 0;
 }
 
 .subdomainSection{
@@ -90,6 +98,7 @@
   display: inline-block;
   margin: auto 0 auto 2em;
   min-height: 7em;
+  max-width: 80%;
 }
 
 .sidebarItem{

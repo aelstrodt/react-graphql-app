@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const SectionLink = (props) => {
-  console.log(props);
   return(
     <ol className="navLinks breadcrumb">
       <li className='breadcrumb-item'>
