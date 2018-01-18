@@ -7,7 +7,7 @@ const ProductItem = (props) => {
   return(
     <div className={className + "productItem list-group-item list-group-item-action"}>
       <div className='productImg'>
-        <img src={isCourse ? product.photoUrl : product.logo}/>
+        <img alt={product.name} src={isCourse ? product.photoUrl : product.logo}/>
       </div>
       <div className='productInfo'>
         <h4 className='productName'>{product.name}</h4>

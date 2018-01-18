@@ -5,30 +5,25 @@ import gql from 'graphql-tag';
 
 import ProductItems from './ProductItems';
 
-class ProductListing extends React.Component{
-  constructor(props){
-    super(props);
-  }
-  render(){
-    if (this.props.listingQuery && this.props.listingQuery.loading) {
-      return null;
-    };
-    if (this.props.listingQuery && this.props.listingQuery.error) {
-      return <div>Error</div>;
-    };
+const ProductListing = (props) => {
+  if (props.listingQuery && props.listingQuery.loading) {
+    return null;
+  };
+  if (props.listingQuery && props.listingQuery.error) {
+    return <div>Error</div>;
+  };
 
-    const productIds = this.props.listingQuery.CatalogResultsV1Resource.bySubdomain.elements[0].entries;
+  const productIds = props.listingQuery.CatalogResultsV1Resource.bySubdomain.elements[0].entries;
 
-    const courses = productIds.filter(product => product.courseId);
-    const courseIds = courses.map(course => course.courseId);
+  const courses = productIds.filter(product => product.courseId);
+  const courseIds = courses.map(course => course.courseId);
 
-    const specializations = productIds.filter(product => product.onDemandSpecializationId);
-    const specializationIds = specializations.map(specialization => specialization.onDemandSpecializationId);
+  const specializations = productIds.filter(product => product.onDemandSpecializationId);
+  const specializationIds = specializations.map(specialization => specialization.onDemandSpecializationId);
 
-    return(
-      <ProductItems courseIds={courseIds} specializationIds={specializationIds}/>
-    );
-  }
+  return(
+    <ProductItems courseIds={courseIds} specializationIds={specializationIds}/>
+  );
 }
 
 const LISTING_QUERY = gql`
@@ -47,4 +42,7 @@ const LISTING_QUERY = gql`
 
 export default graphql(LISTING_QUERY, {
   name: 'listingQuery',
-  options: ({ id, limit }) => ({ variables: { id, limit } })})(ProductListing);
+  options: (props) => ({variables:{
+    id: props.id, 
+    limit: props.limit}})
+  })(ProductListing);

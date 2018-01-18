@@ -14,7 +14,7 @@ const CourseList = (props) => {
         {domainId && !subdomainId ?
           <DomainList domain={domain} ids={domain.subdomainIds} /> :
           domainId && subdomainId ?
-          <SubdomainList id={subdomainId} /> :
+          <SubdomainList domain={domain} id={subdomainId} /> :
           <Home />}
     </div>
   );
