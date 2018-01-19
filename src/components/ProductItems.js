@@ -18,7 +18,7 @@ const ProductItems = (props) => {
   const products = specializations.concat(courses);
 
   return(
-    <div className="product-list list-group">
+    <div className="">
       {products.map((product) => {
         return (
           <ProductItem key={product.id} product={product}/>

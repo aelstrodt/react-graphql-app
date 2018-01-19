@@ -1,29 +1,84 @@
 import React from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+import omit from 'object.omit';
 
-import queryString from 'query-string';
-
-import DomainList from './DomainList';
-import SubdomainList from './SubdomainList';
-import Home from './Home';
+import ProductListing from './ProductListing';
+import SectionLink from './SectionLink';
+import Filters from './Filters';
 
 const CourseList = (props) => {
+  if (props.subdomainsQuery && props.subdomainsQuery.loading) {
+    return null;
+  };
+  if (props.subdomainsQuery && props.subdomainsQuery.error) {
+    return <div>Error</div>;
+  };
 
-  const { domainId, subdomainId, courseSlug } = props.filter.match.params;
-  const domain = domainId ? props.domains.find(domain => domain.id === domainId) : null;
+  const subdomains = props.subdomainsQuery.SubdomainsV1Resource.multiGet.elements;
+  const { domainId, subdomainId } = props.match.params;
+  const subdomain = subdomainId ? subdomains.find(subdomain => subdomain.id == subdomainId) : null;
+  const activeSubdomains = subdomain ? [subdomain] : subdomains;
 
-  const query = queryString.parse(props.filter.location.search);
-  if(!query.page){query.page = 1};
+  const domainIsActive = domainId && !subdomainId ? true : false;
+  const subdomainIsActive = subdomainId ? true : false;
+  const catalogIsActive = !domainId && !subdomainId ? true : false;
+
+  const activePage = domainIsActive ? props.domain : subdomainIsActive ? subdomain : null;
+
+  const imgStyles = {
+    backgroundImage: 'url('+props.domain.backgroundImageUrl+')',
+    backgroundRepeat: 'repeat'
+  };
 
   return(
     <div className='courseList container-fluid'>
-        {domainId && !subdomainId ?
-          <DomainList query={query} domain={domain} ids={domain.subdomainIds} /> :
-          domainId && subdomainId ?
-          <SubdomainList query={query} domain={domain} id={subdomainId} /> :
-          <Home />}
+      <div className='header' alt='headerImg' style={imgStyles}>
+        <div className='headerInfo'>
+          <ol className="navLinks breadcrumb">
+            <SectionLink name='Catalog' path="/browse" active={catalogIsActive}/>
+            {domainId ?
+            <SectionLink name={props.domain.name} path={"/browse/" + props.domain.id} active={domainIsActive}/>
+            : null}
+            {subdomainId ?
+            <SectionLink name={subdomain.name} path={"/browse/" + props.domain.id + "/" + subdomain.id} active={subdomainIsActive}/>
+            : null}
+          </ol>
+            <h1 className='domainHeading'>{activePage.name}</h1>
+            <p className='domainDescription'>{activePage.description}</p>
+        </div>
+      </div>
+      <div className='listingSection'>
+        <Filters {...omit(props, ['domain','subdomainIds','subdomainsQuery'])}/>
+          {activeSubdomains.map(({ name, id }) => {
+            const limit = activeSubdomains.length > 1 ? 5 : 25;
+            return(
+              <div key={id} className='subdomainSection'>
+                <h2 className='subdomainHeading'>{name}</h2>
+                <ProductListing {...omit(props, ['domain','subdomainIds','subdomainsQuery'])} id={id} limit={limit}/>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 }
 
 
-export default CourseList;
+const SUBDOMAINS_QUERY = gql`
+  query SubdomainsQuery($ids: [String!]!) {
+    SubdomainsV1Resource {
+      multiGet(ids: $ids) {
+        elements {
+          id
+          name
+          description
+          backgroundImageUrl
+        }
+      }
+    }
+  }`;
+
+export default graphql(SUBDOMAINS_QUERY, {
+  name: 'subdomainsQuery',
+  options: (props) => ({ variables: {ids: props.subdomainIds} })})(CourseList);

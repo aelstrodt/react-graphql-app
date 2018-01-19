@@ -4,6 +4,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { Link } from 'react-router-dom';
+import queryString from 'query-string';
 
 import ProductItems from './ProductItems';
 import PaginationLinks from './PaginationLinks';
@@ -15,8 +16,14 @@ const ProductListing = (props) => {
   if (props.listingQuery && props.listingQuery.error) {
     return <div>Error</div>;
   };
-  const start = props.paginationPath ? (parseInt(props.query.page,10) - 1)*props.limit : 0;
-  const end = props.paginationPath ? start + props.limit : 5;
+
+  const query = queryString.parse(props.location.search);
+  query.page = query.page ? parseInt(query.page, 10) : 1;
+
+  const domainPage = props.limit > 5 ? false : true;
+
+  const start = domainPage ? 0 : (query.page - 1)*props.limit;
+  const end = domainPage ? 5 : start + props.limit;
 
   const allProducts = props.listingQuery.CatalogResultsV1Resource.bySubdomain.elements[0].entries;
   const numberResults = allProducts.length;
@@ -31,11 +38,12 @@ const ProductListing = (props) => {
   return(
     <div>
       <ProductItems courseIds={courseIds} specializationIds={specializationIds}/>
-      {props.paginationPath ?
-        <PaginationLinks numberResults={numberResults} path={props.paginationPath} page={props.query.page}/>
-        : <Link className='toSubdomainBtn btn btn-primary' to={props.path}>
+      {domainPage ?
+        <Link className='toSubdomainBtn btn btn-primary' to={props.location.pathname + '/' + props.id}>
           See All
         </Link>
+        :
+        <PaginationLinks numberResults={numberResults} path={props.location.pathname} page={query.page}/>
       }
     </div>
   );

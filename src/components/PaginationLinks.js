@@ -7,11 +7,11 @@ import _ from 'lodash';
 const PaginationLinks = (props) => {
   const prevPath = {
     pathname: props.path,
-    search: `?page=${parseInt(props.page,10) - 1}`
+    search: `?page=${props.page - 1}`
   };
   const nextPath = {
     pathname: props.path,
-    search: `?page=${parseInt(props.page,10) + 1}`
+    search: `?page=${props.page + 1}`
   };
 
   const maxPage = Math.ceil(props.numberResults/25);
@@ -19,7 +19,7 @@ const PaginationLinks = (props) => {
   return(
     <nav aria-label="course pagination">
       <ul className="pagination justify-content-center">
-        <li className={`page-item ${parseInt(props.page,10) === 1 ? 'disabled' : ''}`}>
+        <li className={`page-item ${props.page === 1 ? 'disabled' : ''}`}>
           <Link to={prevPath} className="page-link" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
             <span className="sr-only">Previous</span>

@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Route path='/browse/:domainId?/:subdomainId?/:courseSlug?' component={Catalog}/>
+        <Route path='/browse/:domainId?/:subdomainId?' component={Catalog}/>
       </BrowserRouter>
     );
   }

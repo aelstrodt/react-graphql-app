@@ -15,7 +15,6 @@
 }
 
 .navLinks{
-  margin-left: 21em;
   background: none;
   padding: 0 0;
 }
@@ -34,8 +33,6 @@
 }
 
 .header > h1{
-  margin-left: 8.5em ;
-  padding-top: ;
   color: white;
   font-family: "OpenSans";
   font-size: 40px;
@@ -60,6 +57,38 @@
   margin-left: 21em;
 }
 
+.headerInfo{
+  margin-left: 21em;
+  color: white;
+  max-width: 55em;
+  text-align: justify;
+}
+
+.filterLabel{
+  font-weight: bolder;
+  color: black;
+  margin: 0 0;
+  display: inline;
+}
+
+.modalBtn{
+  float: right;
+  position: relative;
+  top: -2em;
+}
+
+.filtersBox{
+  margin-left: 21em;
+  padding: 1em 0em;
+  max-width: 50em;
+}
+
+.headerInfo > p {
+  margin-top: 2em;
+  font-size: 15px;
+  font-family: Arial;
+}
+
 .productImg > img{
   max-width: 7em;
   max-height: 7em;
@@ -72,7 +101,7 @@ nav {
 
 .subdomainSection{
   text-align: center;
-  max-width: 55em;
+  max-width: 50em;
 }
 
 .subdomainHeading{
