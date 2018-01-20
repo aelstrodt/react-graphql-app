@@ -15,7 +15,7 @@ const CatalogPage = (props) => {
   if (props.subdomainsQuery && props.subdomainsQuery.loading) {
     return (
       <div className="pageLoading">
-        <Loading type="oval" width={60} height={60} fill='#4a89dc'/>;
+        <Loading type="oval" width={60} height={60} fill='#4a89dc'/>
       </div>
     );
   };

@@ -2,6 +2,7 @@ import React from 'react';
 
 import queryString from 'query-string';
 import { Link } from 'react-router-dom';
+import omit from 'object.omit';
 
 import FilterRadio from './FilterRadio';
 import langs from '../langs/langs';
@@ -67,6 +68,7 @@ class FiltersModal extends React.Component{
     if(!query.languages){delete query.languages;};
     query.primaryLanguages = this.state.primaryLanguages.length === 0 ? null : this.state.primaryLanguages.join(',');
     if(!query.primaryLanguages){delete query.primaryLanguages;};
+    if(query.page){delete query.page};
     if(query){this.props.history.push(this.props.path + '?' + queryString.stringify(query))}
     else{
       this.props.history.push(this.props.path);

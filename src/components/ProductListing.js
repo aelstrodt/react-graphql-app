@@ -36,6 +36,7 @@ const ProductListing = (props) => {
   const specializationIds = specializations.map(specialization => specialization.onDemandSpecializationId);
 
   return(
+    products.length > 0 ?
     <div className="productListing">
       <ProductItems courseIds={courseIds} specializationIds={specializationIds}/>
       {domainPage ?
@@ -46,6 +47,8 @@ const ProductListing = (props) => {
         <PaginationLinks numberResults={numberResults} path={props.location.pathname} page={query.page}/>
       }
     </div>
+    :
+    <p>No Results</p>
   );
 }
 

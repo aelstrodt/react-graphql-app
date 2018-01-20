@@ -10,7 +10,7 @@ const ProductItems = (props) => {
   if (props.productQuery && props.productQuery.loading) {
     return (
       <div className="loadingDiv">
-        <Loading type="oval" width={60} height={60} fill='#4a89dc'/>;
+        <Loading type="oval" width={60} height={60} fill='#4a89dc'/>
       </div>
     );
   };
