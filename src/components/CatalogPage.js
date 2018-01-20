@@ -2,12 +2,13 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import omit from 'object.omit';
+import queryString from 'query-string';
 
 import ProductListing from './ProductListing';
 import SectionLink from './SectionLink';
 import Filters from './Filters';
 
-const CourseList = (props) => {
+const CatalogPage = (props) => {
   if (props.subdomainsQuery && props.subdomainsQuery.loading) {
     return null;
   };
@@ -44,18 +45,21 @@ const CourseList = (props) => {
             <SectionLink name={subdomain.name} path={"/browse/" + props.domain.id + "/" + subdomain.id} active={subdomainIsActive}/>
             : null}
           </ol>
-            <h1 className='domainHeading'>{activePage.name}</h1>
-            <p className='domainDescription'>{activePage.description}</p>
+            <h1 className='catalogHeading'>{activePage.name}</h1>
+            <p className='catalogDescription'>{activePage.description}</p>
         </div>
       </div>
       <div className='listingSection'>
         <Filters {...omit(props, ['domain','subdomainIds','subdomainsQuery'])}/>
           {activeSubdomains.map(({ name, id }) => {
             const limit = activeSubdomains.length > 1 ? 5 : 25;
+            const query = queryString.parse(props.location.search);
+            const langs = query.languages ? query.languages : [];
+            const pLangs = query.primaryLanguages? query.primaryLanguages : [];
             return(
               <div key={id} className='subdomainSection'>
                 <h2 className='subdomainHeading'>{name}</h2>
-                <ProductListing {...omit(props, ['domain','subdomainIds','subdomainsQuery'])} id={id} limit={limit}/>
+                <ProductListing langs={langs} pLangs={pLangs} {...omit(props, ['domain','subdomainIds','subdomainsQuery'])} id={id} limit={limit}/>
               </div>
             );
           })}
@@ -81,4 +85,4 @@ const SUBDOMAINS_QUERY = gql`
 
 export default graphql(SUBDOMAINS_QUERY, {
   name: 'subdomainsQuery',
-  options: (props) => ({ variables: {ids: props.subdomainIds} })})(CourseList);
+  options: (props) => ({ variables: {ids: props.subdomainIds} })})(CatalogPage);

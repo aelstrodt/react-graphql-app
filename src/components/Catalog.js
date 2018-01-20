@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import omit from 'object.omit';
 
 import Sidebar from './Sidebar';
-import CourseList from './CourseList';
+import CatalogPage from './CatalogPage';
 
 const Catalog = (props) => {
   if (props.domainQuery && props.domainQuery.loading) {
@@ -25,7 +25,7 @@ const Catalog = (props) => {
     <div className='app container-fluid'>
       <Sidebar domains={domains}/>
       {domain ?
-        <CourseList domain={domain} subdomainIds={subdomainIds} {...omit(props, 'domainQuery')}/>
+        <CatalogPage domain={domain} subdomainIds={subdomainIds} {...omit(props, 'domainQuery')}/>
       : null}
     </div>
   );

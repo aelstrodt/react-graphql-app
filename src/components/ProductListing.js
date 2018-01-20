@@ -50,9 +50,9 @@ const ProductListing = (props) => {
 }
 
 const LISTING_QUERY = gql`
-  query ListingQuery($id: String!) {
+  query ListingQuery($id: String!, $langs: [String!]!, $pLangs: [String!]!) {
     CatalogResultsV1Resource{
-      bySubdomain(subdomainId: $id, limit: 250){
+      bySubdomain(subdomainId: $id, languages: $langs, primaryLanguages: $pLangs, limit: 250){
         elements{
           entries{
             courseId
@@ -66,5 +66,7 @@ const LISTING_QUERY = gql`
 export default graphql(LISTING_QUERY, {
   name: 'listingQuery',
   options: (props) => ({variables:{
-    id: props.id}})
+    id: props.id,
+    langs: props.langs,
+    pLangs: props.pLangs}})
   })(ProductListing);

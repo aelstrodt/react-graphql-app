@@ -9,10 +9,10 @@ const FilterButtons = (props) => {
   return(
     <div className='filterButtons'>
       {query.languages ?
-        <FilterButtonInfo primary={false} languages={query.languages} params={query} path={props.location.pathname}/>
+        <FilterButtonInfo primary={false} languages={query.languages} search={props.location.search} path={props.location.pathname}/>
       : null}
       {query.primaryLanguages ?
-        <FilterButtonInfo primary={true} languages={query.primaryLanguages} params={query} path={props.location.pathname}/>
+        <FilterButtonInfo primary={true} languages={query.primaryLanguages} search={props.location.search} path={props.location.pathname}/>
       : null}
     </div>
   );

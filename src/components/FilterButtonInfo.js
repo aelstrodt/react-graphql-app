@@ -1,27 +1,23 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
+import { modifyQuery } from '../helpers/modifyQuery';
+
+import langs from '../langs/langs';
+
 
 const FilterButtonInfo = (props) => {
   return(
-    <div>
-      {props.languages.split(',').map(lan => {
-        // search --> languages=en%2Cvi&page=1&primaryLanguages=es
-        const cleanPath = !props.primary ? 'languages=' + lan : 'primaryLanguages='+lan;
-        const search = queryString.stringify(props.params);
-        let searchOmitted = search.replace(`%2C${lan}`, '') === search ?
-        search.replace(`${lan}%2C`, '') :
-        search.replace(`%2C${lan}`, '');
-        searchOmitted = searchOmitted === search ? searchOmitted.replace(cleanPath, '') : searchOmitted;
+      props.languages.split(',').map(lan => {
+        const searchOmitted = modifyQuery(props.primary, lan, props.search);
         const path = {pathname: props.path, search: searchOmitted};
+        const name = props.primary ? langs.primaryLanguages.find(lang => lang.id === lan).name : langs.languages.find(lang => lang.id === lan).name; 
         return(
-          <Link key={lan} to={path} className="filterBtn">{props.primary ? "Taught in " + lan : lan}</Link>
-        );
-      }
-    )}
-    </div>
+          <Link key={lan} to={path} className="filterBtn btn btn-dark">{props.primary ? "Taught in " + name : name}</Link>
+        );}
+      )
   );
 }
+
 
 export default FilterButtonInfo;
