@@ -11,5 +11,6 @@ export function modifyQuery(primary, langId, search){
     query.languages = filteredLangs.join(',');
     if (query.languages.length === 0) {delete query.languages};
   }
+  if(query.page){delete query.page};
   return queryString.stringify(query);
 }

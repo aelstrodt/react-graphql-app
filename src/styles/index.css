@@ -41,9 +41,8 @@
 
 .sidebar {
   width: 15em;
+  margin: 2em;
   position: fixed;
-  margin-left: 5em;
-  margin-top: 2.5em;
 }
 
 .sidebar > h4 {
@@ -75,6 +74,12 @@
   font-weight: bolder;
 }
 
+.noResults{
+  line-height: 6em;
+  display: inline-block;
+
+}
+
 .pageLoading{
   height: 100vh;
   width: 100vw;
@@ -100,7 +105,9 @@
 }
 
 .subdomainSection{
-  margin-left: 21em;
+  padding: 0 2em 2em 2em;
+  text-align: center;
+  max-width: 50em;
 }
 
 .productListing{
@@ -108,7 +115,7 @@
 }
 
 .headerInfo{
-  margin-left: 21em;
+  padding: 0 2em;
   color: white;
   max-width: 50em;
   text-align: justify;
@@ -135,8 +142,7 @@
 }
 
 .filtersBox{
-  margin-left: 21em;
-  padding: 1em 0em;
+  padding: 1em 2em;
   max-width: 50em;
 }
 
@@ -154,11 +160,6 @@
 
 nav {
   padding: 1em 0;
-}
-
-.subdomainSection{
-  text-align: center;
-  max-width: 50em;
 }
 
 .subdomainHeading{
@@ -187,7 +188,6 @@ nav {
 
 .toSubdomainBtn{
   margin-top: 1em;
-  margin-bottom: 1.5em;
   min-width: 6em;
   line-height: 2em;
   font-size: 1.2em;
@@ -196,7 +196,7 @@ nav {
 .productInfo{
   display: inline-block;
   margin: auto 0 0 2em;
-  max-width: 38em;
+  max-width: 30em;
 }
 
 .sidebarItem{
@@ -220,4 +220,44 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+}
+
+@media all and (min-width: 970px){
+  .headerInfo, .filtersBox, .subdomainSection{
+    margin-left: 16em;
+  }
+}
+
+@media all and (max-width: 970px){
+  .headerInfo, .filtersBox, .subdomainSection{
+    margin: 0 auto;
+  }
+  .sidebar {
+    display: none;
+  }
+  .main {
+    display: block;
+    position: absolute;
+    top: 18em;
+    left: 3em;
+  }
+  .catalogHome{
+    height: 65em;
+    padding-top: 3em;
+  }
+  .homeBanner{
+    margin: 0 auto;
+  }
+}
+
+@media all and (min-width: 800px){
+  .main{
+    top: 0;
+  }
+  .homeBanner{
+    margin-left: 15em;
+  }
+  .catalogHome{
+    height: 50em;
+  }
 }

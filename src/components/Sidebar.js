@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Sidebar = (props) => {
-
+  const sidebarClass = props.path === '/browse' ? 'main' : '';
   return(
-    <div className="sidebar list-group">
+    <div className={`sidebar ${sidebarClass} list-group`}>
       <h4 className="list-group-item">Categories</h4>
       {props.domains.map(({ name, id }) => {
         const path = {

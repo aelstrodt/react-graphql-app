@@ -28,7 +28,7 @@ const Catalog = (props) => {
 
   return (
     <div className='app container-fluid'>
-      <Sidebar search={props.location.search} domains={domains}/>
+      <Sidebar path={props.location.pathname} search={props.location.search} domains={domains}/>
       {domain ?
       <CatalogPage domain={domain} subdomainIds={subdomainIds} {...omit(props, 'domainQuery')}/>
       :

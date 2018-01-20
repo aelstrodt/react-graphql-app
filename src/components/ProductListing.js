@@ -5,13 +5,18 @@ import gql from 'graphql-tag';
 
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
+import Loading from 'react-loading-components';
 
 import ProductItems from './ProductItems';
 import PaginationLinks from './PaginationLinks';
 
 const ProductListing = (props) => {
   if (props.listingQuery && props.listingQuery.loading) {
-    return null;
+    return (
+      <div className="loadingDiv">
+        <Loading type="oval" width={60} height={60} fill='#4a89dc'/>
+      </div>
+    );
   };
   if (props.listingQuery && props.listingQuery.error) {
     return <div>Error</div>;
@@ -34,21 +39,25 @@ const ProductListing = (props) => {
 
   const specializations = products.filter(product => product.onDemandSpecializationId);
   const specializationIds = specializations.map(specialization => specialization.onDemandSpecializationId);
-
+  const path = {
+    pathname: props.location.pathname + '/' + props.id,
+    search: props.location.search
+  }
   return(
     products.length > 0 ?
     <div className="productListing">
       <ProductItems courseIds={courseIds} specializationIds={specializationIds}/>
-      {domainPage ?
-        <Link className='toSubdomainBtn btn btn-primary' to={props.location.pathname + '/' + props.id}>
+      {domainPage && numberResults > 5 ?
+        <Link className='toSubdomainBtn btn btn-primary' to={path}>
           See All
         </Link>
-        :
-        <PaginationLinks numberResults={numberResults} path={props.location.pathname} page={query.page}/>
+        : !domainPage ?
+        <PaginationLinks query={query} numberResults={numberResults} path={props.location.pathname} page={query.page}/>
+        : null
       }
     </div>
     :
-    <p>No Results</p>
+    <p className='noResults'>No Results</p>
   );
 }
 

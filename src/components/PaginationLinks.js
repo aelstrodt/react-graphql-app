@@ -1,17 +1,19 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-
+import queryString from 'query-string';
 import _ from 'lodash';
 
 const PaginationLinks = (props) => {
+  props.query.page = props.page - 1
   const prevPath = {
     pathname: props.path,
-    search: `?page=${props.page - 1}`
+    search: queryString.stringify(props.query)
   };
+  props.query.page = props.page + 1
   const nextPath = {
     pathname: props.path,
-    search: `?page=${props.page + 1}`
+    search: queryString.stringify(props.query)
   };
 
   const maxPage = Math.ceil(props.numberResults/25);
@@ -26,7 +28,8 @@ const PaginationLinks = (props) => {
           </Link>
         </li>
         {_.range(maxPage).map(page => {
-          const path = {pathname: props.path, search: `?page=${page+1}`};
+          props.query.page = page + 1
+          const path = {pathname: props.path, search: queryString.stringify(props.query)};
           return(
             <li key={page} className="page-item">
               <Link to={path} className="page-link" href="#">{page+1}</Link>
