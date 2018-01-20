@@ -36,7 +36,7 @@ const ProductListing = (props) => {
   const specializationIds = specializations.map(specialization => specialization.onDemandSpecializationId);
 
   return(
-    <div>
+    <div className="productListing">
       <ProductItems courseIds={courseIds} specializationIds={specializationIds}/>
       {domainPage ?
         <Link className='toSubdomainBtn btn btn-primary' to={props.location.pathname + '/' + props.id}>

@@ -3,14 +3,21 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import omit from 'object.omit';
 import queryString from 'query-string';
+import Loading from 'react-loading-components';
 
 import ProductListing from './ProductListing';
 import SectionLink from './SectionLink';
 import Filters from './Filters';
 
+
+
 const CatalogPage = (props) => {
   if (props.subdomainsQuery && props.subdomainsQuery.loading) {
-    return null;
+    return (
+      <div className="pageLoading">
+        <Loading type="oval" width={60} height={60} fill='#4a89dc'/>;
+      </div>
+    );
   };
   if (props.subdomainsQuery && props.subdomainsQuery.error) {
     return <div>Error</div>;
@@ -27,8 +34,11 @@ const CatalogPage = (props) => {
 
   const activePage = domainIsActive ? props.domain : subdomainIsActive ? subdomain : null;
 
-  const imgStyles = {
+  const imgStyles = !subdomain ? {
     backgroundImage: 'url('+props.domain.backgroundImageUrl+')',
+    backgroundRepeat: 'repeat'
+  } : {
+    backgroundImage: 'url('+subdomain.backgroundImageUrl+')',
     backgroundRepeat: 'repeat'
   };
 

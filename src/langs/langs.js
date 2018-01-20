@@ -15,6 +15,18 @@ const langs = {
     {
       name: 'Portuguese (Brazilian)',
       id: 'pt-BR'
+    },
+    {
+      name: 'Russian',
+      id: 'ru'
+    },
+    {
+      name: 'Chinese (Simplified)',
+      id: 'zh-CN'
+    },
+    {
+      name: 'Chinese (Traditional)',
+      id: 'zh-TW'
     }
   ],
   primaryLanguages: [
@@ -33,6 +45,18 @@ const langs = {
     {
       name: 'Portuguese (Brazilian)',
       id: 'pt-BR'
+    },
+    {
+      name: 'Russian',
+      id: 'ru'
+    },
+    {
+      name: 'Chinese (Simplified)',
+      id: 'zh-CN'
+    },
+    {
+      name: 'Chinese (Traditional)',
+      id: 'zh-TW'
     }
   ]
 };

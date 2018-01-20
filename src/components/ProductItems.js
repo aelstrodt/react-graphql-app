@@ -4,10 +4,15 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import ProductItem from './ProductItem';
+import Loading from 'react-loading-components';
 
 const ProductItems = (props) => {
   if (props.productQuery && props.productQuery.loading) {
-    return null;
+    return (
+      <div className="loadingDiv">
+        <Loading type="oval" width={60} height={60} fill='#4a89dc'/>;
+      </div>
+    );
   };
   if (props.productQuery && props.productQuery.error) {
     return <div>Error</div>;
@@ -18,7 +23,7 @@ const ProductItems = (props) => {
   const products = specializations.concat(courses);
 
   return(
-    <div className="">
+    <div className="productItems">
       {products.map((product) => {
         return (
           <ProductItem key={product.id} product={product}/>

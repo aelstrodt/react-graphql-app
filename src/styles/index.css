@@ -13,11 +13,48 @@
 .courseList{
   padding: 0 0;
 }
+
+.catalogHome{
+  width: 100vw;
+  height: 100vw;
+  background-image: url("https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera_assets.s3.amazonaws.com/growth_discovery/images/root/learner-cup-iphone-v1.jpg?auto=&dpr=1");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 5em;
+}
+
+.homeBanner{
+  margin-left: 15em;
+  max-width: 18em;
+  line-height: 30px;
+  background-color: rgba(10,10,10,0.7);
+  padding: 1.5em;
+  color: white;
+  font-family: 'Merriweather-Light', Georgia, serif ;
+  font-size: 23px;
+}
+
+.homeHeading > a {
+  display: inline;
+  margin-left: 0.2em;
+}
+
 .sidebar {
   width: 15em;
   position: fixed;
   margin-left: 5em;
   margin-top: 2.5em;
+}
+
+.sidebar > h4 {
+  color: #757575;
+  padding-left: 20px;
+  padding-top: 15px;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 18px;
+  font-family: 'OpenSans',Arial,sans-serif;
+  font-weight: bold;
 }
 
 .navLinks{
@@ -38,8 +75,17 @@
   font-weight: bolder;
 }
 
+.pageLoading{
+  height: 100vh;
+  width: 100vw;
+  background-color: #ebebeb;
+  text-align: center;
+  padding-top: 10em;
+}
+
 .listingSection{
   background-color: #ebebeb;
+  min-height: 75vh;
 }
 
 .pagination {
@@ -55,6 +101,10 @@
 
 .subdomainSection{
   margin-left: 21em;
+}
+
+.productListing{
+
 }
 
 .headerInfo{

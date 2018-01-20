@@ -33,7 +33,7 @@ const PaginationLinks = (props) => {
             </li>
           );
         })}
-        <li className={`page-item ${props.page === 10 ? 'disabled' : ''}`}>
+        <li className={`page-item ${props.page === maxPage ? 'disabled' : ''}`}>
           <Link to={nextPath} className="page-link" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
             <span className="sr-only">Next</span>
