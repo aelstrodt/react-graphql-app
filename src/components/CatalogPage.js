@@ -25,7 +25,7 @@ const CatalogPage = (props) => {
 
   const subdomains = props.subdomainsQuery.SubdomainsV1Resource.multiGet.elements;
   const { domainId, subdomainId } = props.match.params;
-  const subdomain = subdomainId ? subdomains.find(subdomain => subdomain.id == subdomainId) : null;
+  const subdomain = subdomainId ? subdomains.find(subdomain => subdomain.id === subdomainId) : null;
   const activeSubdomains = subdomain ? [subdomain] : subdomains;
 
   const domainIsActive = domainId && !subdomainId ? true : false;
@@ -42,17 +42,21 @@ const CatalogPage = (props) => {
     backgroundRepeat: 'repeat'
   };
 
+  const searchFull = queryString.parse(props.location.search);
+  if(searchFull.page){delete searchFull.page};
+  const search = queryString.stringify(searchFull);
+
   return(
     <div className='courseList container-fluid'>
       <div className='header' alt='headerImg' style={imgStyles}>
         <div className='headerInfo'>
           <ol className="navLinks breadcrumb">
-            <SectionLink name='Catalog' search={props.location.search} path="/browse" active={catalogIsActive}/>
+            <SectionLink name='Catalog' search={search} path="/browse" active={catalogIsActive}/>
             {domainId ?
-            <SectionLink name={props.domain.name} search={props.location.search} path={"/browse/" + props.domain.id} active={domainIsActive}/>
+            <SectionLink name={props.domain.name} search={search} path={"/browse/" + props.domain.id} active={domainIsActive}/>
             : null}
             {subdomainId ?
-            <SectionLink name={subdomain.name} search={props.location.search} path={"/browse/" + props.domain.id + "/" + subdomain.id} active={subdomainIsActive}/>
+            <SectionLink name={subdomain.name} search={search} path={"/browse/" + props.domain.id + "/" + subdomain.id} active={subdomainIsActive}/>
             : null}
           </ol>
             <h1 className='catalogHeading'>{activePage.name}</h1>

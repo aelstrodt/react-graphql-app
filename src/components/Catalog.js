@@ -21,7 +21,7 @@ const Catalog = (props) => {
   };
   const domains = props.domainQuery.DomainsV1Resource.getAll.elements;
   const { domainId } = props.match.params;
-  const domain = domainId ? domains.find(domain => domain.id == domainId) : null;
+  const domain = domainId ? domains.find(domain => domain.id === domainId) : null;
 
   const { subdomainId } = props.match.params;
   const subdomainIds = subdomainId ? [subdomainId] : domain ? domain.subdomainIds : null;

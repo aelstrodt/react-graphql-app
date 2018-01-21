@@ -1,8 +1,6 @@
 import React from 'react';
 
 import queryString from 'query-string';
-import { Link } from 'react-router-dom';
-import omit from 'object.omit';
 
 import FilterRadio from './FilterRadio';
 import langs from '../langs/langs';
@@ -33,7 +31,7 @@ class FiltersModal extends React.Component{
 
   onRadioChange({ target }){
     const lang = target.value.split(':');
-    const isPrimary = lang[0] == 'pLang' ? true : false;
+    const isPrimary = lang[0] === 'pLang' ? true : false;
     const langId = lang[1];
     if(isPrimary){
       if(target.checked){
@@ -42,7 +40,7 @@ class FiltersModal extends React.Component{
             primaryLanguages: newPrimaryLangs
         });
       }else{
-        const newPrimaryLangs = this.state.primaryLanguages.filter(id => id != langId);
+        const newPrimaryLangs = this.state.primaryLanguages.filter(id => id !== langId);
         this.setState({
             primaryLanguages: newPrimaryLangs
         });
@@ -54,7 +52,7 @@ class FiltersModal extends React.Component{
           languages: newLangs
         });
       } else {
-        const newLangs = this.state.languages.filter(id => id != langId);
+        const newLangs = this.state.languages.filter(id => id !== langId);
         this.setState({
           languages: newLangs
         });
