@@ -47,12 +47,12 @@ const CatalogPage = (props) => {
       <div className='header' alt='headerImg' style={imgStyles}>
         <div className='headerInfo'>
           <ol className="navLinks breadcrumb">
-            <SectionLink name='Catalog' path="/browse" active={catalogIsActive}/>
+            <SectionLink name='Catalog' search={props.location.search} path="/browse" active={catalogIsActive}/>
             {domainId ?
-            <SectionLink name={props.domain.name} path={"/browse/" + props.domain.id} active={domainIsActive}/>
+            <SectionLink name={props.domain.name} search={props.location.search} path={"/browse/" + props.domain.id} active={domainIsActive}/>
             : null}
             {subdomainId ?
-            <SectionLink name={subdomain.name} path={"/browse/" + props.domain.id + "/" + subdomain.id} active={subdomainIsActive}/>
+            <SectionLink name={subdomain.name} search={props.location.search} path={"/browse/" + props.domain.id + "/" + subdomain.id} active={subdomainIsActive}/>
             : null}
           </ol>
             <h1 className='catalogHeading'>{activePage.name}</h1>

@@ -16,7 +16,7 @@
 
 .catalogHome{
   width: 100vw;
-  height: 100vw;
+  height: 100vh;
   background-image: url("https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera_assets.s3.amazonaws.com/growth_discovery/images/root/learner-cup-iphone-v1.jpg?auto=&dpr=1");
   background-repeat: no-repeat;
   background-size: cover;
@@ -50,7 +50,7 @@
   padding-left: 20px;
   padding-top: 15px;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 18px;
   font-family: 'OpenSans',Arial,sans-serif;
   font-weight: bold;
@@ -218,7 +218,8 @@ nav {
 }
 
 .sidebarItem{
-  line-height: 1.6em;
+  line-height: 4vh;
+  font-size: 16px;
 }
 
 .specializationSize{
@@ -261,10 +262,6 @@ body {
     top: 18em;
     left: 3em;
   }
-  .catalogHome{
-    height: 65em;
-    padding-top: 3em;
-  }
   .homeBanner{
     margin: 0 auto;
   }
@@ -277,8 +274,20 @@ body {
   .homeBanner{
     margin-left: 15em;
   }
+}
+
+@media all and (max-width: 800px){
   .catalogHome{
-    height: 50em;
+    height: 80em;
+  }
+}
+
+@media all and (max-width: 445px){
+  .main{
+    top: 20em;
+  }
+  .catalogHome{
+    min-height: 80em;
   }
 }
 

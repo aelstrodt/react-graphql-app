@@ -6,7 +6,7 @@ import FiltersModal from './FiltersModal';
 const Filters = (props) => {
   return(
     <div className='filtersBox row no-gutters'>
-      <div className='col-12 col-sm-2'>
+      <div className='col-11 col-sm-2'>
         <p className='filterLabel align-top'>Active Filters:</p>
       </div>
       <div className='col'>

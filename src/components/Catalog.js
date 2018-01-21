@@ -35,9 +35,9 @@ const Catalog = (props) => {
       <div className="catalogHome container-fluid">
         <div className="homeBanner">
           <h4 className="homeHeading">Hundreds of Specializations and Courses in
-            <Link to="/browse/business">Business</Link>,
-            <Link to="/browse/computer-science">Computer Science</Link>,
-            <Link to="/browse/data-science">Data Science</Link>,
+            <Link to={{pathname: "/browse/business", search: props.location.search}}>Business</Link>,
+            <Link to={{pathname: "/browse/computer-science", search: props.location.search}}>Computer Science</Link>,
+            <Link to={{pathname: "/browse/data-science", search: props.location.search}}>Data Science</Link>,
             and more.</h4>
         </div>
       </div>

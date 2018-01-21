@@ -30,8 +30,9 @@ const PaginationLinks = (props) => {
         {_.range(maxPage).map(page => {
           props.query.page = page + 1
           const path = {pathname: props.path, search: queryString.stringify(props.query)};
+          const active = page + 1 === props.page ? 'active' : '';
           return(
-            <li key={page} className="page-item numberLink">
+            <li key={page} className={"page-item numberLink " + active}>
               <Link to={path} className="page-link" href="#">{page+1}</Link>
             </li>
           );
