@@ -68,7 +68,7 @@ const CatalogPage = (props) => {
             const pLangs = query.primaryLanguages? query.primaryLanguages : [];
             return(
               <div key={id} className='subdomainSection'>
-                <h2 className='subdomainHeading'>{name}</h2>
+                {activeSubdomains.length > 1 ? <h2 className='subdomainHeading'>{name}</h2> : null}
                 <ProductListing langs={langs} pLangs={pLangs} {...omit(props, ['domain','subdomainIds','subdomainsQuery'])} id={id} limit={limit}/>
               </div>
             );

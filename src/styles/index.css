@@ -98,7 +98,7 @@
 }
 
 .header{
-  width: 100%;
+  width: 100vw;
   min-height: 8em;
   padding-top: 2em;
   padding-bottom: 1.5em;
@@ -107,7 +107,7 @@
 .subdomainSection{
   padding: 0 2em 2em 2em;
   text-align: center;
-  max-width: 50em;
+  max-width: 70em;
 }
 
 .productListing{
@@ -117,7 +117,7 @@
 .headerInfo{
   padding: 0 2em;
   color: white;
-  max-width: 50em;
+  max-width: 70em;
   text-align: justify;
 }
 
@@ -125,10 +125,14 @@
   margin-bottom: 0;
 }
 
+.productInfo {
+  margin: 2em 0;
+}
+
 .filterLabel{
   font-weight: bolder;
   color: black;
-  margin: 0 1em 0 0;
+  margin: 0 0;
   display: inline;
 }
 
@@ -143,7 +147,7 @@
 
 .filtersBox{
   padding: 1em 2em;
-  max-width: 50em;
+  max-width: 70em;
 }
 
 .headerInfo > p {
@@ -153,9 +157,14 @@
 }
 
 .productImg > img{
-  max-width: 7em;
-  max-height: 7em;
-  float: left;
+  max-width: 9em;
+  max-height: 9em;
+  display: block;
+}
+
+.instructorName{
+  font-family: Arial;
+  font-weight: 400;
 }
 
 nav {
@@ -175,7 +184,7 @@ nav {
 }
 
 .filterButtons{
-  display: inline-block;
+  display: inline;
   max-width: 39em;
 }
 
@@ -193,10 +202,19 @@ nav {
   font-size: 1.2em;
 }
 
-.productInfo{
-  display: inline-block;
-  margin: auto 0 0 2em;
-  max-width: 30em;
+.instructorName{
+  text-align: center;
+}
+
+.instructorInfo{
+  text-align: center;
+}
+
+.instructorPhoto{
+  max-height: 5em;
+  margin: 1em auto;
+  display: block;
+  border-radius: 100%;
 }
 
 .sidebarItem{
@@ -212,8 +230,10 @@ nav {
 }
 
 .partnerName{
-  display: inline-block;
+  display: block;
   color: #b3b3b3;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
 }
 
 body {
@@ -259,5 +279,41 @@ body {
   }
   .catalogHome{
     height: 50em;
+  }
+}
+
+@media all and (max-width: 768px){
+  .instructorInfo{
+    display: none;
+  }
+  .productImg > img{
+    max-width: 8em;
+    max-height: 8em;
+  }
+}
+
+@media all and (min-width: 576px){
+  .productImg > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+}
+
+@media all and (max-width: 576px){
+  .productImg > img {
+    display: block;
+    margin: 1em auto;
+  }
+  .productInfo{
+    margin: 0 0 0 1em;
+    text-align: center;
+  }
+  .numberLink{
+    display: none;
+  }
+  .page-link{
+    padding: 1em 20vw;
   }
 }

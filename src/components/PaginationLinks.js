@@ -31,7 +31,7 @@ const PaginationLinks = (props) => {
           props.query.page = page + 1
           const path = {pathname: props.path, search: queryString.stringify(props.query)};
           return(
-            <li key={page} className="page-item">
+            <li key={page} className="page-item numberLink">
               <Link to={path} className="page-link" href="#">{page+1}</Link>
             </li>
           );
